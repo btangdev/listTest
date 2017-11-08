@@ -28,54 +28,22 @@ class App extends Component {
 				auth.signInWithPopup(authProvider);
 			}
 		});
-
-		this.state = {
-			caption: '',
-			url: '',
-			description: '',
-			user: ''
-		}
 	}
 
-	componentWillMount() {
-		
-	}
+	componentWillMount() {}
 
-	componentWillReceiveProps() {
-		
-	}
+	componentWillReceiveProps() {}
 
-	componentDidMount() {
-		this.db.on('value', (snapshot) => {
-			snapshot.forEach(function(childSnapshot) {
-				var childData = childSnapshot.val();
-
-                var postData = {
-                    url: childData.url,
-                    caption: childData.caption,
-                    user: childData.user,
-                    description: childData.description
-				}
-				
-				this.setState({
-					url: postData.url,
-					caption: postData.caption,
-					user: postData.user,
-					description: postData.description
-				});
-			}.bind(this));
-		})
-	}
+	componentDidMount() {}
 
 	render() {
-		console.log(this.state.url);
 		return (
 			<div>
 				<MuiThemeProvider>
 					<UIUpload></UIUpload>
 				</MuiThemeProvider>
 				<MuiThemeProvider>
-					<Thumb caption={this.state.caption} user={this.state.user} url={this.state.url} description={this.state.description}></Thumb>
+					<Thumb></Thumb>
 				</MuiThemeProvider>
 			</div>
 		);
