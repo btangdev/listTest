@@ -28,22 +28,44 @@ class App extends Component {
 				auth.signInWithPopup(authProvider);
 			}
 		});
+
+		// this.state = {
+		// 	data: []
+		// }
 	}
 
-	componentWillMount() {}
+	componentWillMount() {
+		
+	}
 
-	componentWillReceiveProps() {}
+	componentDidMount() {
+		// this.db.on('value', (snapshot) => {
+		// 	snapshot.forEach(function(childSnapshot) {
+		// 		var childData = childSnapshot.val();
 
-	componentDidMount() {}
+        //         var postData = {
+        //             url: childData.url,
+        //             caption: childData.caption,
+        //             user: childData.user,
+        //             description: childData.description
+		// 		}
+				
+		// 		this.setState({
+		// 			data: postData
+		// 		});
+		// 	}.bind(this));
+		// });
+	}
 
-	render() {
-		return (
+	render() {		
+		return (			
 			<div>
 				<MuiThemeProvider>
 					<UIUpload></UIUpload>
 				</MuiThemeProvider>
 				<MuiThemeProvider>
 					<Thumb></Thumb>
+					{/* <Thumb data={this.state.data}></Thumb> */}
 				</MuiThemeProvider>
 			</div>
 		);

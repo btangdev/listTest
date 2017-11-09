@@ -12,7 +12,8 @@ export default class  UIUpload extends Component {
         this.state = {
             url: '',
             caption: '',
-            description: ''
+            description: '',
+            datas: Object,
         }
 
         this.onFileUpload = this.onFileUpload.bind(this);
@@ -24,7 +25,7 @@ export default class  UIUpload extends Component {
     onFileUpload(event) {
         var file = event.target.files[0];
         this.setState({
-            url: file
+            datas: file
         });
     }
 
@@ -43,11 +44,12 @@ export default class  UIUpload extends Component {
     }
 
     onDataSubmit() {        
+        console.log('DATAS:: ' + this.state.datas.name);
         var caption = this.state.caption;
         var description = this.state.description;
 
-        var storageRef = firebase.storage().ref('thumbnail/' + this.state.url);
-        var task = storageRef.put(this.state.url);
+        var storageRef = firebase.storage().ref('thumbnail/' + this.state.datas.name);
+        var task = storageRef.put(this.state.datas);
 
         task.on('state_changed', 
             function(snapshot) {},

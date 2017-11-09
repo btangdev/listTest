@@ -10,7 +10,8 @@ export default class ThumbContent extends Component {
         return(
             <div>
                 <CardText>
-                    <img style={style} src={this.props.url} alt=""/>
+                    <img style={style} src={this.props.photo} alt=""/>
+                    {/* <video src={this.props.video}></video> */}
                     <p>{this.props.children}</p>
                 </CardText>
             </div>
