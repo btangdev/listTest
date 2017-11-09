@@ -6,6 +6,8 @@ import * as firebase from 'firebase';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import UIUpload from './ui/UIUpload';
 import Thumb from './list/Thumb';
+import AppHeader from './layout/AppHeader';
+import AppBottom from './layout/AppBottom';
 
 class App extends Component {
 	constructor(props) {
@@ -28,48 +30,30 @@ class App extends Component {
 				auth.signInWithPopup(authProvider);
 			}
 		});
-
-		// this.state = {
-		// 	data: []
-		// }
-	}
-
-	componentWillMount() {
-		
-	}
-
-	componentDidMount() {
-		// this.db.on('value', (snapshot) => {
-		// 	snapshot.forEach(function(childSnapshot) {
-		// 		var childData = childSnapshot.val();
-
-        //         var postData = {
-        //             url: childData.url,
-        //             caption: childData.caption,
-        //             user: childData.user,
-        //             description: childData.description
-		// 		}
-				
-		// 		this.setState({
-		// 			data: postData
-		// 		});
-		// 	}.bind(this));
-		// });
 	}
 
 	render() {		
 		return (			
 			<div>
 				<MuiThemeProvider>
+					<AppHeader title={this.props.title}></AppHeader>
+				</MuiThemeProvider>				
+				<MuiThemeProvider>
 					<UIUpload></UIUpload>
 				</MuiThemeProvider>
 				<MuiThemeProvider>
 					<Thumb></Thumb>
-					{/* <Thumb data={this.state.data}></Thumb> */}
+				</MuiThemeProvider>
+				<MuiThemeProvider>
+					<AppBottom></AppBottom>
 				</MuiThemeProvider>
 			</div>
 		);
 	}
+}
+
+App.defaultProps = {
+	title: 'React & Firebase Post'
 }
 
 export default App;
