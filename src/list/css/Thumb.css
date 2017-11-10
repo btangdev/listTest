@@ -1,1 +1,12 @@
-.cardStyle { width: 80%; }
+.cardContainer {
+    position: relative; 
+    top: 70px;
+}
+
+.cardStyle { 
+    position: relative; 
+    width: 96%; 
+    left: 2%;     
+    transform: translate(0%, 0%); 
+    margin-top: 15px; 
+}

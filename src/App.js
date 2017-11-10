@@ -8,6 +8,9 @@ import UIUpload from './ui/UIUpload';
 import Thumb from './list/Thumb';
 import AppHeader from './layout/AppHeader';
 import AppBottom from './layout/AppBottom';
+import Detail from './detail/Detail';
+
+import update from 'react-addons-update';
 
 class App extends Component {
 	constructor(props) {
@@ -25,6 +28,7 @@ class App extends Component {
 				// User is signed in.
 				// console.log(user.displayName);
 				// console.log('uid: ' + user.uid);
+				console.log(user.photoURL);
 			} else {
 				// No user is signed in.
 				auth.signInWithPopup(authProvider);
@@ -39,13 +43,16 @@ class App extends Component {
 					<AppHeader title={this.props.title}></AppHeader>
 				</MuiThemeProvider>				
 				<MuiThemeProvider>
-					<UIUpload></UIUpload>
+					<UIUpload onRemove={this.handleRemove}></UIUpload>
 				</MuiThemeProvider>
 				<MuiThemeProvider>
 					<Thumb></Thumb>
 				</MuiThemeProvider>
-				<MuiThemeProvider>
+				{/* <MuiThemeProvider>
 					<AppBottom></AppBottom>
+				</MuiThemeProvider> */}
+				<MuiThemeProvider>
+					<Detail></Detail>
 				</MuiThemeProvider>
 			</div>
 		);

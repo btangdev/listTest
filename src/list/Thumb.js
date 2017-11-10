@@ -6,6 +6,8 @@ import ThumbHeader from './ThumbHeader';
 import ThumbTitle from './ThumbTitle';
 import ThumbContent from './ThumbContent';
 
+import './css/Thumb.css';
+
 export default class Thumb extends Component { 
     constructor(props) {
         super(props);
@@ -14,18 +16,18 @@ export default class Thumb extends Component {
             data: []
         }
         
-        this.database = firebase.database().ref().child('Posts/');        
+        this.database = firebase.database().ref().child('Posts/');    
+        
+        this.onClickDetailView = this.onClickDetailView.bind(this);
     }   
 
     componentDidMount() {
         const dataList = [];
 
-        this.database.on('value', (snapshot) => {
-            snapshot.forEach(function(childSnapshot){
-                dataList.push({ 
-                    item: childSnapshot.val()
-                });
-            }.bind(this));
+        this.database.on('child_added', (snapshot) => {
+            dataList.push({
+                item: snapshot.val()
+            });
 
             this.setState({
                 data: dataList
@@ -33,15 +35,19 @@ export default class Thumb extends Component {
         })
     }
 
+    onClickDetailView() {
+        
+    }
+
     render() {
         return(            
-            <div>
+            <div className='cardContainer'>
                 {
                     this.state.data.map((db,i) => {
-                        console.log(db.item.user);
-                        return(
-                            <Card key={i}>
-                                <ThumbHeader user={db.item.user}></ThumbHeader>
+                        console.log(db.item);
+                        return(                            
+                            <Card key={i} className='cardStyle' onClick={this.onClickDetailView}>
+                                <ThumbHeader user={db.item.user} userEmail={db.item.userEmail} photoURL={db.item.userPhoto}></ThumbHeader>
                                 <ThumbTitle caption={db.item.caption}></ThumbTitle>
                                 <ThumbContent photo={db.item.url}>{db.item.description}</ThumbContent>
                             </Card>

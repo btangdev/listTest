@@ -1,0 +1,8 @@
+.formStyle {
+    width: 100%;
+    top: 64px;
+    position: fixed; 
+    padding: 4%;
+    box-sizing: border-box;
+    z-index: 100;
+}
